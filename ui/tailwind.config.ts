@@ -22,8 +22,9 @@ const config: Config = {
         info: '#3B82F6',
       },
       fontFamily: {
-        heading: ['Syne', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        heading: ['var(--font-syne)', 'system-ui', 'sans-serif'],
+        body: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'Courier New', 'monospace'],
       },
       boxShadow: {
         glass: '0 4px 30px rgba(0, 0, 0, 0.3)',

@@ -2,7 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+:root {
+  --background: #0A0800;
+  --surface: #1A1400;
+  --gold-border: #FFD700;
+  --text-primary: #F0EDE6;
+  --text-secondary: #9E9B94;
+  --accent: #FFD700;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-syne), system-ui, sans-serif;
+}
+
+code, pre, .font-mono {
+  font-family: var(--font-mono), 'Courier New', monospace;
+}
+
+.glass-card {
+  background: rgba(26, 20, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 12px;
+}
+
+.gold-border-top {
+  border-top: 2px solid var(--gold-border);
+}
+
+@keyframes pulse-anim {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.pulse-green {
+  animation: pulse-anim 2s ease-in-out infinite;
+}
+
+@keyframes typewriter {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.typewriter-text {
+  animation: typewriter 0.3s ease forwards;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,215,0,0.4); }
 
 :root {
   --background: #0A0800;
