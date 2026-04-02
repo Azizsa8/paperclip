@@ -1,0 +1,13 @@
+﻿name: telegram
+type: mcp
+endpoint: https://api.telegram.org
+auth:
+  type: api_key
+  env_var: TELEGRAM_BOT_TOKEN
+capabilities:
+  - action: read
+  - action: write
+  - action: execute
+rate_limits:
+  requests_per_minute: 60
+status: active

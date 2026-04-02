@@ -1,0 +1,78 @@
+﻿{
+    "active":  false,
+    "name":  "publishing-scheduler",
+    "connections":  {
+                        "Daily Cron":  [
+                                           {
+                                               "node":  "Check Pending",
+                                               "type":  "main",
+                                               "index":  0
+                                           }
+                                       ],
+                        "Check Pending":  [
+                                              {
+                                                  "node":  "Postforme API",
+                                                  "type":  "main",
+                                                  "index":  0
+                                              }
+                                          ],
+                        "Postforme API":  [
+                                              {
+                                                  "node":  "Log Result",
+                                                  "type":  "main",
+                                                  "index":  0
+                                              }
+                                          ]
+                    },
+    "nodes":  [
+                  {
+                      "position":  [
+                                       200,
+                                       200
+                                   ],
+                      "name":  "Daily Cron",
+                      "id":  "1",
+                      "type":  "n8n-nodes-base.cron",
+                      "parameters":  {
+                                         "cronExpression":  "0 9 * * *"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       420,
+                                       200
+                                   ],
+                      "name":  "Check Pending",
+                      "id":  "2",
+                      "type":  "n8n-nodes-base.function",
+                      "parameters":  {
+                                         "functionCode":  "return [{json:{pending_posts:[{platform:\u0027twitter\u0027, content:\u0027sample\u0027}]}}];"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       640,
+                                       200
+                                   ],
+                      "name":  "Postforme API",
+                      "id":  "3",
+                      "type":  "n8n-nodes-base.httpRequest",
+                      "parameters":  {
+                                         "url":  "https://api.postforme.dev/mcp/post",
+                                         "method":  "POST"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       860,
+                                       200
+                                   ],
+                      "name":  "Log Result",
+                      "id":  "4",
+                      "type":  "n8n-nodes-base.function",
+                      "parameters":  {
+                                         "functionCode":  "return [{json:{status:\u0027published\u0027}}];"
+                                     }
+                  }
+              ]
+}

@@ -1,0 +1,13 @@
+﻿name: meta-ads
+type: mcp
+endpoint: https://graph.facebook.com/v18.0
+auth:
+  type: bearer
+  env_var: META_ACCESS_TOKEN
+capabilities:
+  - action: read
+  - action: write
+  - action: execute
+rate_limits:
+  requests_per_minute: 60
+status: active

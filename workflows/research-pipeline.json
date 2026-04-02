@@ -1,0 +1,106 @@
+﻿{
+    "active":  false,
+    "name":  "research-pipeline",
+    "connections":  {
+                        "Persona Architect":  [
+                                                  {
+                                                      "node":  "Combine Results",
+                                                      "type":  "main",
+                                                      "index":  0
+                                                  }
+                                              ],
+                        "Competitor Analyst":  [
+                                                   {
+                                                       "node":  "Combine Results",
+                                                       "type":  "main",
+                                                       "index":  0
+                                                   }
+                                               ],
+                        "Market Researcher":  [
+                                                  {
+                                                      "node":  "Combine Results",
+                                                      "type":  "main",
+                                                      "index":  0
+                                                  }
+                                              ],
+                        "Start Research":  [
+                                               {
+                                                   "node":  "Market Researcher",
+                                                   "type":  "main",
+                                                   "index":  0
+                                               },
+                                               {
+                                                   "node":  "Persona Architect",
+                                                   "type":  "main",
+                                                   "index":  0
+                                               },
+                                               {
+                                                   "node":  "Competitor Analyst",
+                                                   "type":  "main",
+                                                   "index":  0
+                                               }
+                                           ]
+                    },
+    "nodes":  [
+                  {
+                      "position":  [
+                                       200,
+                                       200
+                                   ],
+                      "name":  "Start Research",
+                      "id":  "1",
+                      "type":  "n8n-nodes-base.executeWorkflow",
+                      "parameters":  {
+                                         "workflowId":  "research-pipeline"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       420,
+                                       100
+                                   ],
+                      "name":  "Market Researcher",
+                      "id":  "2",
+                      "type":  "n8n-nodes-base.function",
+                      "parameters":  {
+                                         "functionCode":  "return [{json:{research:\u0027market_analysis\u0027, data:\u0027sample\u0027}}];"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       420,
+                                       200
+                                   ],
+                      "name":  "Persona Architect",
+                      "id":  "3",
+                      "type":  "n8n-nodes-base.function",
+                      "parameters":  {
+                                         "functionCode":  "return [{json:{research:\u0027personas\u0027, data:\u0027sample\u0027}}];"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       420,
+                                       300
+                                   ],
+                      "name":  "Competitor Analyst",
+                      "id":  "4",
+                      "type":  "n8n-nodes-base.function",
+                      "parameters":  {
+                                         "functionCode":  "return [{json:{research:\u0027competitors\u0027, data:\u0027sample\u0027}}];"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       640,
+                                       200
+                                   ],
+                      "name":  "Combine Results",
+                      "id":  "5",
+                      "type":  "n8n-nodes-base.function",
+                      "parameters":  {
+                                         "functionCode":  "return [{json:{brief:\u0027Research brief complete\u0027}}];"
+                                     }
+                  }
+              ]
+}

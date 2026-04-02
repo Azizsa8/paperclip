@@ -1,0 +1,79 @@
+﻿{
+    "active":  false,
+    "name":  "master-campaign-workflow",
+    "connections":  {
+                        "Parse Input":  [
+                                            {
+                                                "node":  "Spawn CEO Agent",
+                                                "type":  "main",
+                                                "index":  0
+                                            }
+                                        ],
+                        "Webhook Trigger":  [
+                                                {
+                                                    "node":  "Parse Input",
+                                                    "type":  "main",
+                                                    "index":  0
+                                                }
+                                            ],
+                        "Spawn CEO Agent":  [
+                                                {
+                                                    "node":  "Delegate to Divisions",
+                                                    "type":  "main",
+                                                    "index":  0
+                                                }
+                                            ]
+                    },
+    "nodes":  [
+                  {
+                      "position":  [
+                                       200,
+                                       200
+                                   ],
+                      "name":  "Webhook Trigger",
+                      "id":  "1",
+                      "type":  "n8n-nodes-base.webhook",
+                      "parameters":  {
+                                         "path":  "amads/master-campaign",
+                                         "httpMethod":  "POST"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       420,
+                                       200
+                                   ],
+                      "name":  "Parse Input",
+                      "id":  "2",
+                      "type":  "n8n-nodes-base.function",
+                      "parameters":  {
+                                         "functionCode":  "return [{json:{campaign_id:\u0027CMP-\u0027+Math.floor(Math.random()*1000000), status:\u0027created\u0027}}];"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       640,
+                                       200
+                                   ],
+                      "name":  "Spawn CEO Agent",
+                      "id":  "3",
+                      "type":  "n8n-nodes-base.httpRequest",
+                      "parameters":  {
+                                         "url":  "http://openclaw.railway.internal:8080/v1/agents/ceo-agent/run",
+                                         "method":  "POST"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       860,
+                                       200
+                                   ],
+                      "name":  "Delegate to Divisions",
+                      "id":  "4",
+                      "type":  "n8n-nodes-base.function",
+                      "parameters":  {
+                                         "functionCode":  "return [{json:{divisions:[\u0027research\u0027,\u0027creative\u0027,\u0027strategy\u0027,\u0027execution\u0027], status:\u0027delegated\u0027}}];"
+                                     }
+                  }
+              ]
+}

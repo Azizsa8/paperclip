@@ -1,0 +1,102 @@
+﻿{
+    "active":  false,
+    "name":  "creative-pipeline",
+    "connections":  {
+                        "LUMA AI":  [
+                                        {
+                                            "node":  "QA + Humanizer",
+                                            "type":  "main",
+                                            "index":  0
+                                        }
+                                    ],
+                        "Start Creative":  [
+                                               {
+                                                   "node":  "Cultural Researcher",
+                                                   "type":  "main",
+                                                   "index":  0
+                                               },
+                                               {
+                                                   "node":  "Prompt Engineer",
+                                                   "type":  "main",
+                                                   "index":  0
+                                               }
+                                           ],
+                        "Prompt Engineer":  [
+                                                {
+                                                    "node":  "LUMA AI",
+                                                    "type":  "main",
+                                                    "index":  0
+                                                }
+                                            ],
+                        "Cultural Researcher":  [
+                                                    {
+                                                        "node":  "LUMA AI",
+                                                        "type":  "main",
+                                                        "index":  0
+                                                    }
+                                                ]
+                    },
+    "nodes":  [
+                  {
+                      "position":  [
+                                       200,
+                                       200
+                                   ],
+                      "name":  "Start Creative",
+                      "id":  "1",
+                      "type":  "n8n-nodes-base.executeWorkflow",
+                      "parameters":  {
+
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       420,
+                                       150
+                                   ],
+                      "name":  "Cultural Researcher",
+                      "id":  "2",
+                      "type":  "n8n-nodes-base.function",
+                      "parameters":  {
+                                         "functionCode":  "return [{json:{cultural_brief:\u0027ready\u0027}}];"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       420,
+                                       250
+                                   ],
+                      "name":  "Prompt Engineer",
+                      "id":  "3",
+                      "type":  "n8n-nodes-base.function",
+                      "parameters":  {
+                                         "functionCode":  "return [{json:{prompts:[\u0027prompt1\u0027,\u0027prompt2\u0027]}}];"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       640,
+                                       200
+                                   ],
+                      "name":  "LUMA AI",
+                      "id":  "4",
+                      "type":  "n8n-nodes-base.httpRequest",
+                      "parameters":  {
+                                         "url":  "https://api.lumalabs.ai/v1/generate",
+                                         "method":  "POST"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       860,
+                                       200
+                                   ],
+                      "name":  "QA + Humanizer",
+                      "id":  "5",
+                      "type":  "n8n-nodes-base.function",
+                      "parameters":  {
+                                         "functionCode":  "return [{json:{assets:\u0027approved_and_humanized\u0027}}];"
+                                     }
+                  }
+              ]
+}

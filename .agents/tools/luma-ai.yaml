@@ -1,0 +1,13 @@
+﻿name: luma-ai
+type: mcp
+endpoint: https://api.lumalabs.ai/v1
+auth:
+  type: api_key
+  env_var: LUMA_API_KEY
+capabilities:
+  - action: read
+  - action: write
+  - action: execute
+rate_limits:
+  requests_per_minute: 60
+status: active

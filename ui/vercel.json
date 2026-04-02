@@ -1,0 +1,10 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "env": {
+    "NEXT_PUBLIC_PAPERCLIP_URL": "https://paperclip-groq-production.up.railway.app",
+    "NEXT_PUBLIC_OPENCLAW_URL": "https://openclaw-production-af70.up.railway.app"
+  }
+}

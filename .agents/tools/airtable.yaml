@@ -1,0 +1,13 @@
+﻿name: airtable
+type: mcp
+endpoint: https://api.airtable.com/v0
+auth:
+  type: bearer
+  env_var: AIRTABLE_API_KEY
+capabilities:
+  - action: read
+  - action: write
+  - action: execute
+rate_limits:
+  requests_per_minute: 60
+status: active
