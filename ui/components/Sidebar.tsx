@@ -13,11 +13,14 @@ import {
   Brain,
   BarChart3,
   Settings,
+  FlaskConical,
+  Megaphone,
 } from 'lucide-react'
 
 const navItems = [
   { href: '/dashboard', label: 'Command Center', icon: LayoutDashboard },
-  { href: '/launch', label: 'Launch', icon: Rocket },
+  { href: '/campaigns', label: 'Campaigns', icon: Megaphone },
+  { href: '/experiments', label: 'Experiments', icon: FlaskConical },
   { href: '/canvas', label: 'Agent Canvas', icon: Network },
   { href: '/hierarchy', label: 'Hierarchy', icon: GitBranch },
   { href: '/studio', label: 'Studio', icon: Palette },
