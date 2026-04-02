@@ -1,0 +1,77 @@
+﻿{
+    "active":  false,
+    "name":  "daily-report-generator",
+    "connections":  {
+                        "9AM Cron":  [
+                                         {
+                                             "node":  "Aggregate Data",
+                                             "type":  "main",
+                                             "index":  0
+                                         }
+                                     ],
+                        "Aggregate Data":  [
+                                               {
+                                                   "node":  "Post to Slack",
+                                                   "type":  "main",
+                                                   "index":  0
+                                               },
+                                               {
+                                                   "node":  "Post to Telegram",
+                                                   "type":  "main",
+                                                   "index":  0
+                                               }
+                                           ]
+                    },
+    "nodes":  [
+                  {
+                      "position":  [
+                                       200,
+                                       200
+                                   ],
+                      "name":  "9AM Cron",
+                      "id":  "1",
+                      "type":  "n8n-nodes-base.cron",
+                      "parameters":  {
+                                         "cronExpression":  "0 9 * * *"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       420,
+                                       200
+                                   ],
+                      "name":  "Aggregate Data",
+                      "id":  "2",
+                      "type":  "n8n-nodes-base.function",
+                      "parameters":  {
+                                         "functionCode":  "return [{json:{report:\u0027Daily AMADS Report: All systems operational\u0027}}];"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       640,
+                                       150
+                                   ],
+                      "name":  "Post to Slack",
+                      "id":  "3",
+                      "type":  "n8n-nodes-base.httpRequest",
+                      "parameters":  {
+                                         "url":  "https://slack.com/api/chat.postMessage",
+                                         "method":  "POST"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       640,
+                                       250
+                                   ],
+                      "name":  "Post to Telegram",
+                      "id":  "4",
+                      "type":  "n8n-nodes-base.httpRequest",
+                      "parameters":  {
+                                         "url":  "https://api.telegram.org/bot/sendMessage",
+                                         "method":  "POST"
+                                     }
+                  }
+              ]
+}

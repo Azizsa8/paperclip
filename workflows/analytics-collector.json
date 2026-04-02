@@ -1,0 +1,84 @@
+﻿{
+    "active":  false,
+    "name":  "analytics-collector",
+    "connections":  {
+                        "Hourly Cron":  [
+                                            {
+                                                "node":  "GA4 Data",
+                                                "type":  "main",
+                                                "index":  0
+                                            },
+                                            {
+                                                "node":  "Social Metrics",
+                                                "type":  "main",
+                                                "index":  0
+                                            }
+                                        ],
+                        "Social Metrics":  [
+                                               {
+                                                   "node":  "Store in DB",
+                                                   "type":  "main",
+                                                   "index":  0
+                                               }
+                                           ],
+                        "GA4 Data":  [
+                                         {
+                                             "node":  "Store in DB",
+                                             "type":  "main",
+                                             "index":  0
+                                         }
+                                     ]
+                    },
+    "nodes":  [
+                  {
+                      "position":  [
+                                       200,
+                                       200
+                                   ],
+                      "name":  "Hourly Cron",
+                      "id":  "1",
+                      "type":  "n8n-nodes-base.cron",
+                      "parameters":  {
+                                         "cronExpression":  "0 * * * *"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       420,
+                                       150
+                                   ],
+                      "name":  "GA4 Data",
+                      "id":  "2",
+                      "type":  "n8n-nodes-base.httpRequest",
+                      "parameters":  {
+                                         "url":  "https://analyticsreporting.googleapis.com/v4/reports:batchGet",
+                                         "method":  "POST"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       420,
+                                       250
+                                   ],
+                      "name":  "Social Metrics",
+                      "id":  "3",
+                      "type":  "n8n-nodes-base.function",
+                      "parameters":  {
+                                         "functionCode":  "return [{json:{social:\u0027metrics\u0027}}];"
+                                     }
+                  },
+                  {
+                      "position":  [
+                                       640,
+                                       200
+                                   ],
+                      "name":  "Store in DB",
+                      "id":  "4",
+                      "type":  "n8n-nodes-base.postgres",
+                      "parameters":  {
+                                         "table":  "analytics",
+                                         "operation":  "insert"
+                                     }
+                  }
+              ]
+}

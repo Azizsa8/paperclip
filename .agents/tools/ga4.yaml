@@ -1,0 +1,13 @@
+﻿name: ga4
+type: mcp
+endpoint: https://analyticsreporting.googleapis.com/v4
+auth:
+  type: oauth
+  env_var: GA4_OAUTH_TOKEN
+capabilities:
+  - action: read
+  - action: write
+  - action: execute
+rate_limits:
+  requests_per_minute: 60
+status: active

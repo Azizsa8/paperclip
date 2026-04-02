@@ -1,0 +1,13 @@
+﻿name: n8n
+type: mcp
+endpoint: https://n8n-prim.up.railway.app/api/v1
+auth:
+  type: bearer
+  env_var: N8N_API_KEY
+capabilities:
+  - action: read
+  - action: write
+  - action: execute
+rate_limits:
+  requests_per_minute: 60
+status: active

@@ -1,0 +1,323 @@
+agents:
+  # C-SUITE DIVISION
+  - id: ceo-agent
+    name: CEO Agent
+    role: Chief Executive Officer
+    division: c-suite
+    model: groq/llama-3.3-70b-versatile
+    tools: [slack, ga4]
+    reports_to: null
+    manages: [cmo-agent, cro-agent, coo-agent]
+
+  - id: cmo-agent
+    name: CMO Agent
+    role: Chief Marketing Officer
+    division: c-suite
+    model: groq/llama-3.3-70b-versatile
+    tools: [slack, ga4, postforme]
+    reports_to: ceo-agent
+    manages: [market-researcher, persona-architect, creative-director, campaign-strategist, content-creator, social-media-manager]
+
+  - id: cro-agent
+    name: CRO Agent
+    role: Chief Revenue Officer
+    division: c-suite
+    model: groq/llama-3.3-70b-versatile
+    tools: [slack, ga4, meta-ads, google-ads]
+    reports_to: ceo-agent
+    manages: [data-analyst, sales-analyst, paid-media-specialist]
+
+  - id: coo-agent
+    name: COO Agent
+    role: Chief Operating Officer
+    division: c-suite
+    model: groq/llama-3.3-70b-versatile
+    tools: [slack, n8n]
+    reports_to: ceo-agent
+    manages: [auto-learning-agent, performance-optimizer]
+
+  # RESEARCH DIVISION
+  - id: market-researcher
+    name: Market Researcher
+    role: Market Intelligence Analyst
+    division: research
+    model: groq/llama-3.3-70b-versatile
+    tools: [ga4, ahrefs, semrush]
+    reports_to: cmo-agent
+    manages: []
+
+  - id: product-researcher
+    name: Product Researcher
+    role: Product Intelligence Analyst
+    division: research
+    model: groq/llama-3.3-70b-versatile
+    tools: [ga4, semrush]
+    reports_to: cmo-agent
+    manages: []
+
+  - id: persona-architect
+    name: Persona Architect
+    role: Audience Psychology Specialist
+    division: research
+    model: groq/llama-3.3-70b-versatile
+    tools: [ga4, meta-ads]
+    reports_to: cmo-agent
+    manages: []
+
+  - id: competitor-analyst
+    name: Competitor Analyst
+    role: Competitive Intelligence Specialist
+    division: research
+    model: groq/llama-3.3-70b-versatile
+    tools: [ga4, meta-ads, ahrefs, semrush]
+    reports_to: cmo-agent
+    manages: []
+
+  - id: trend-forecaster
+    name: Trend Forecaster
+    role: Trend Prediction Specialist
+    division: research
+    model: groq/llama-3.3-70b-versatile
+    tools: [ga4, reddit, twitter]
+    reports_to: cmo-agent
+    manages: []
+
+  # CREATIVE DIVISION
+  - id: creative-director
+    name: Creative Director
+    role: Creative Strategy Leader
+    division: creative
+    model: groq/llama-3.3-70b-versatile
+    tools: [postforme, luma-ai]
+    reports_to: cmo-agent
+    manages: [visual-designer, copywriter-supreme, narrative-creator, psychology-master]
+
+  - id: visual-designer
+    name: Visual Designer
+    role: Visual Creation Specialist
+    division: creative
+    model: groq/llama-3.3-70b-versatile
+    tools: [luma-ai]
+    reports_to: creative-director
+    manages: []
+
+  - id: copywriter-supreme
+    name: Copywriter Supreme
+    role: Persuasive Writing Specialist
+    division: creative
+    model: groq/llama-3.3-70b-versatile
+    tools: []
+    reports_to: creative-director
+    manages: []
+
+  - id: narrative-creator
+    name: Narrative Creator
+    role: Story Architecture Specialist
+    division: creative
+    model: groq/llama-3.3-70b-versatile
+    tools: []
+    reports_to: creative-director
+    manages: []
+
+  - id: psychology-master
+    name: Psychology Master
+    role: Behavioral Science Specialist
+    division: creative
+    model: groq/llama-3.3-70b-versatile
+    tools: []
+    reports_to: creative-director
+    manages: []
+
+  # STRATEGY DIVISION
+  - id: campaign-strategist
+    name: Campaign Strategist
+    role: Campaign Architecture Specialist
+    division: strategy
+    model: groq/llama-3.3-70b-versatile
+    tools: [ga4]
+    reports_to: cmo-agent
+    manages: []
+
+  - id: channel-strategist
+    name: Channel Strategist
+    role: Platform Optimization Specialist
+    division: strategy
+    model: groq/llama-3.3-70b-versatile
+    tools: [ga4]
+    reports_to: cmo-agent
+    manages: []
+
+  - id: messaging-strategist
+    name: Messaging Strategist
+    role: Message Crafting Specialist
+    division: strategy
+    model: groq/llama-3.3-70b-versatile
+    tools: []
+    reports_to: cmo-agent
+    manages: []
+
+  - id: budget-strategist
+    name: Budget Strategist
+    role: Financial Optimization Specialist
+    division: strategy
+    model: groq/llama-3.3-70b-versatile
+    tools: [ga4, meta-ads, google-ads]
+    reports_to: cro-agent
+    manages: []
+
+  - id: timing-strategist
+    name: Timing Strategist
+    role: Temporal Optimization Specialist
+    division: strategy
+    model: groq/llama-3.3-70b-versatile
+    tools: [ga4]
+    reports_to: cmo-agent
+    manages: []
+
+  # CONTENT PROMPT TEAM
+  - id: cultural-researcher
+    name: Cultural Researcher
+    role: Region & Audience Culture Analyst
+    division: prompt-team
+    model: groq/llama-3.3-70b-versatile
+    tools: []
+    reports_to: creative-director
+    manages: []
+
+  - id: prompt-engineer
+    name: Prompt Engineer
+    role: LUMA AI Prompt Specialist
+    division: prompt-team
+    model: groq/llama-3.3-70b-versatile
+    tools: [luma-ai]
+    reports_to: creative-director
+    manages: []
+
+  - id: quality-assurance
+    name: Quality Assurance
+    role: Output Validation Specialist
+    division: prompt-team
+    model: groq/llama-3.3-70b-versatile
+    tools: []
+    reports_to: creative-director
+    manages: []
+
+  - id: humanizer
+    name: Humanizer
+    role: Authentic Content Refiner
+    division: prompt-team
+    model: groq/llama-3.3-70b-versatile
+    tools: []
+    reports_to: creative-director
+    manages: []
+
+  # EXECUTION DIVISION
+  - id: content-creator
+    name: Content Creator
+    role: Multi-Format Content Producer
+    division: execution
+    model: groq/llama-3.3-70b-versatile
+    tools: [postforme]
+    reports_to: cmo-agent
+    manages: []
+
+  - id: social-media-manager
+    name: Social Media Manager
+    role: Social Platform Execution Specialist
+    division: execution
+    model: groq/llama-3.3-70b-versatile
+    tools: [postforme, whatsapp, telegram]
+    reports_to: cmo-agent
+    manages: []
+
+  - id: paid-media-specialist
+    name: Paid Media Specialist
+    role: Paid Advertising Execution Specialist
+    division: execution
+    model: groq/llama-3.3-70b-versatile
+    tools: [meta-ads, google-ads, ga4]
+    reports_to: cro-agent
+    manages: []
+
+  - id: seo-specialist
+    name: SEO Specialist
+    role: Organic Search Optimization Specialist
+    division: execution
+    model: groq/llama-3.3-70b-versatile
+    tools: [ahrefs, semrush, ga4]
+    reports_to: cmo-agent
+    manages: []
+
+  - id: dm-agent
+    name: DM Agent
+    role: Direct Messaging Specialist
+    division: execution
+    model: groq/llama-3.3-70b-versatile
+    tools: [whatsapp, telegram, slack]
+    reports_to: cmo-agent
+    manages: []
+
+  # ANALYTICS DIVISION
+  - id: data-analyst
+    name: Data Analyst
+    role: Data Intelligence Specialist
+    division: analytics
+    model: groq/llama-3.3-70b-versatile
+    tools: [ga4, meta-ads, google-ads]
+    reports_to: cro-agent
+    manages: []
+
+  - id: behavior-analyst
+    name: Behavior Analyst
+    role: Customer Behavior Specialist
+    division: analytics
+    model: groq/llama-3.3-70b-versatile
+    tools: [ga4]
+    reports_to: cro-agent
+    manages: []
+
+  - id: sales-analyst
+    name: Sales Analyst
+    role: Revenue Intelligence Specialist
+    division: analytics
+    model: groq/llama-3.3-70b-versatile
+    tools: [ga4, meta-ads, google-ads]
+    reports_to: cro-agent
+    manages: []
+
+  - id: sentiment-analyst
+    name: Sentiment Analyst
+    role: Brand Perception Specialist
+    division: analytics
+    model: groq/llama-3.3-70b-versatile
+    tools: [ga4, reddit, twitter]
+    reports_to: cmo-agent
+    manages: []
+
+  # OPTIMIZATION DIVISION
+  - id: auto-learning-agent
+    name: Auto-Learning Agent
+    role: Continuous Improvement Specialist
+    division: optimization
+    model: groq/llama-3.3-70b-versatile
+    tools: [ga4, n8n]
+    reports_to: ceo-agent
+    manages: []
+
+  - id: ab-testing-agent
+    name: A/B Testing Agent
+    role: Experimentation Specialist
+    division: optimization
+    model: groq/llama-3.3-70b-versatile
+    tools: [ga4]
+    reports_to: cro-agent
+    manages: []
+
+  - id: performance-optimizer
+    name: Performance Optimizer
+    role: Efficiency Maximization Specialist
+    division: optimization
+    model: groq/llama-3.3-70b-versatile
+    tools: [ga4, meta-ads, google-ads]
+    reports_to: cro-agent
+    manages: []

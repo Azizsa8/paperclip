@@ -1,0 +1,13 @@
+﻿name: whatsapp
+type: mcp
+endpoint: https://mcp.whatsapp.com
+auth:
+  type: api_key
+  env_var: WHATSAPP_API_KEY
+capabilities:
+  - action: read
+  - action: write
+  - action: execute
+rate_limits:
+  requests_per_minute: 60
+status: active
